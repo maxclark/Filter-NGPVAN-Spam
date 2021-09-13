@@ -15,7 +15,6 @@ function filterNGPVANSpam() {
         body.match(/^Received:.*ngp(van|web)\.com/m);
 
       if(matchedNGPVAN){
-        console.log('message', matchedNGPVAN, body);
         GmailApp.moveThreadToSpam(threads[i]);
       }
       Utilities.sleep(500);
