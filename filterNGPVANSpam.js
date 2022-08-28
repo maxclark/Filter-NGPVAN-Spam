@@ -7,24 +7,25 @@
 // https://gist.github.com/canadaduane/b5da111903ff748429bd425227af271c
 
 function filterNGPVANSpam() {
-  var threads = GmailApp.getInboxThreads(0, 5);
-  threads.concat(GmailApp.search('category:promotions', 0, 5));
+  // var threads = GmailApp.getInboxThreads(0, 5);
+  // threads.concat(GmailApp.search('category:promotions', 0, 5));
+  var threads = GmailApp.getInboxThreads(0,50);
   for (var i = 0; i < threads.length; i++) {
     var messages = threads[i].getMessages();
+    // Logger.log(threads[i].getFirstMessageSubject());
     for (var j = 0; j < messages.length; j++) {
       var message = messages[j];
       var body = message.getRawContent();
 
       var matchedNGPVAN =
-        // NGPVAN
         body.match(/^List-Unsubscribe:\s*<(.*ngpvan\.com.*)>\s*$/m) ||
         body.match(/^Received:.*ngp(van|web)\.com/m) ||
-        // ActionKit
         body.match(/^List-Unsubscribe:\s*<(.*actionkit\.com.*)>\s*$/m) ||
         body.match(/^Received:.*actionkit\.com/m);
 
       if(matchedNGPVAN){
         GmailApp.moveThreadToSpam(threads[i]);
+        // Logger.log('Moved to spam: %s', threads[i].getFirstMessageSubject());
       }
       Utilities.sleep(500);
     }
