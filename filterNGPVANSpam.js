@@ -1,6 +1,8 @@
+// Coypright 2021, Duane Johnson
 // Copyright 2022, Max Clark
 // 
-// Copying and distribution of this file, with or without modification, are permitted in any medium without royalty, provided the copyright notice and this notice are preserved. This file is offered as-is, without any warranty.
+// Copying and distribution of this file, with or without modification, are permitted in any medium without royalty, 
+// provided the copyright notice and this notice are preserved. This file is offered as-is, without any warranty.
 
 function filterNGPVANSpam() {
   // var threads = GmailApp.getInboxThreads(0, 5);
